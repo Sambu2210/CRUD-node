@@ -34,6 +34,16 @@ app.post("/create", (req, res) => {
   });
 });
 
+app.get("/read/:id", (req, res) => {
+  //   res.json("balaji");
+  const sql = "SELECT * FROM crud_table WHERE id = ?";
+  const id = req.params.id;
+  db.query(sql, [id], (err, data) => {
+    if (err) return res.json("error");
+    return res.json(data);
+  });
+});
+
 app.listen(8000, () => {
   console.log("Listen");
 });
